@@ -45,12 +45,6 @@
         "@typescript-eslint/no-unused-vars": "error",
         "@typescript-eslint/no-explicit-any": "error",
         "@typescript-eslint/no-require-imports": 2,
-        "@typescript-eslint/consistent-type-imports": [
-          "error",
-          {
-            "prefer": "type-imports"
-          }
-        ],
         "no-console": [2, { "allow": ["info", "error", "warn"] }],
         "arrow-body-style": [2, "as-needed"], // Remove all explicit returns that are not neccessary
         "no-unneeded-ternary": [2, { "defaultAssignment": false }], // Default ternary x ? x : 1 results to x || 1
