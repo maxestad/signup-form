@@ -1,0 +1,101 @@
+{
+  "root": true,
+  "ignorePatterns": ["projects/**/*"],
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [".ts"]
+      }
+    }
+  },
+  "overrides": [
+    {
+      "files": ["*.ts"],
+      "extends": [
+        "eslint:recommended",
+        "plugin:@typescript-eslint/recommended",
+        "plugin:@angular-eslint/recommended",
+        "plugin:@angular-eslint/template/process-inline-templates",
+        "plugin:import/errors",
+        "prettier"
+      ],
+      "rules": {
+        "@angular-eslint/directive-selector": [
+          "error",
+          {
+            "type": "attribute",
+            "prefix": "app",
+            "style": "camelCase"
+          }
+        ],
+        "@angular-eslint/component-selector": [
+          "error",
+          {
+            "type": "element",
+            "prefix": "app",
+            "style": "kebab-case"
+          }
+        ],
+        "@typescript-eslint/no-empty-function": [
+          "error",
+          { "allow": ["constructors"] }
+        ],
+        "@typescript-eslint/explicit-function-return-type": "error", // Explicit types for all function return values
+        "@typescript-eslint/explicit-module-boundary-types": "warn", // Explicit types for exported function return values and arguments
+        "@typescript-eslint/no-unused-vars": "error",
+        "@typescript-eslint/no-explicit-any": "error",
+        "@typescript-eslint/no-require-imports": 2,
+        "@typescript-eslint/consistent-type-imports": [
+          "error",
+          {
+            "prefer": "type-imports"
+          }
+        ],
+        "no-console": [2, { "allow": ["info", "error", "warn"] }],
+        "arrow-body-style": [2, "as-needed"], // Remove all explicit returns that are not neccessary
+        "no-unneeded-ternary": [2, { "defaultAssignment": false }], // Default ternary x ? x : 1 results to x || 1
+        "curly": 2, // Avoid single line ifs, force curly brace on the same line
+        "newline-before-return": 2, // Add newline before every return
+        "import/order": [
+          1,
+          {
+            "groups": [
+              "builtin",
+              "external",
+              "internal",
+              "parent",
+              "sibling",
+              "index",
+              "object",
+              "type"
+            ],
+            "pathGroups": [
+              {
+                "pattern": "@/**/**",
+                "group": "parent",
+                "position": "before"
+              }
+            ],
+            "alphabetize": { "order": "asc" },
+            "newlines-between": "always"
+          }
+        ], // Sort imports in groups, built-in first and external after, delimit with a newline
+        "object-shorthand": 2, // Shorten objects - { someProp: someProp } result to { someProp }
+        "prefer-const": 2, // Force const declarations for variables that are not mutated
+        "no-var": 2, // Forbid var declaration
+        "spaced-comment": ["error", "always", { "markers": ["/"] }], // Force one whitespace after "//" comment, and fix next-end.d.ts error message
+        "no-useless-return": 2, // Forbid all explicit returns that serve not purpose
+        "no-irregular-whitespace": 2, // Silent guard from weird whitespace clashes in code
+        "dot-notation": 2 // Force dot notation wheter possible - Object['string'] results to object.string
+      }
+    },
+    {
+      "files": ["*.html"],
+      "extends": [
+        "plugin:@angular-eslint/template/recommended",
+        "plugin:@angular-eslint/template/accessibility"
+      ],
+      "rules": {}
+    }
+  ]
+}
