@@ -7,9 +7,12 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "prepare": "husky install",
     "lint": "ng lint",
-    "format": "prettier \"src/**/*.{ts,html,scss}\" --write"
+    "format": "prettier \"src/**/*.{ts,html,scss}\" --write --ignore-unknown"
+  },
+  "engines": {
+    "node": "18.16.0",
+    "npm": "9.5.1"
   },
   "private": true,
   "dependencies": {
@@ -39,6 +42,7 @@
     "@types/jasmine": "~4.3.2",
     "@typescript-eslint/eslint-plugin": "5.59.9",
     "@typescript-eslint/parser": "5.59.9",
+    "autoprefixer": "^10.4.14",
     "eslint": "8.42.0",
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-import": "^2.27.5",
@@ -50,7 +54,9 @@
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
     "lint-staged": "13.2.2",
+    "postcss": "^8.4.24",
     "prettier": "2.8.8",
+    "tailwindcss": "^3.3.2",
     "typescript": "~5.0.4"
   }
 }
