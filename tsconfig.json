@@ -2,7 +2,6 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "baseUrl": "./",
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,
     "strict": true,
@@ -20,10 +19,10 @@
     "module": "ES2022",
     "useDefineForClassFields": false,
     "paths": {
-      "@modules/*": ["src/app/modules/*"],
-      "@services/*": ["src/app/services/*"],
-      "@shared/*": ["src/app/modules/shared/*"],
-      "@components/*": ["src/app/modules/authentication/component/*"]
+      "@core/*": ["./src/app/core/*"],
+      "@models/*": ["./src/app/models/*"],
+      "@features/*": ["./src/app/features/*"],
+      "@shared/*": ["./src/app/shared/*"]
     },
     "lib": ["ES2022", "dom"]
   },

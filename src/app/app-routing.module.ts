@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
+import { authGuard } from './core/guards/auth.guard';
+
 import type { Routes } from '@angular/router';
 
 const routes: Routes = [
@@ -12,6 +14,7 @@ const routes: Routes = [
       import('./features/dashboard/dashboard.module').then(
         ({ DashboardModule }) => DashboardModule
       ),
+    canActivate: [authGuard],
   },
   {
     path: 'sign-up',

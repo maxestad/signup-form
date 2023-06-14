@@ -2,9 +2,12 @@
   "root": true,
   "ignorePatterns": ["projects/**/*"],
   "settings": {
+    "import/parsers": {
+      "@typescript-eslint/parser": [".ts"]
+    },
     "import/resolver": {
       "node": {
-        "extensions": [".ts"]
+        "extensions": [".js", ".ts", ".d.ts", ".mjs"]
       }
     }
   },
