@@ -4,6 +4,21 @@
 
 @layer base {
   html {
-    @apply bg-gray-100 text-gray-800;
+    @apply bg-gray-200 text-gray-800;
   }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.fade-in-error {
+  animation-name: fade-in;
+  animation-duration: 0.5s;
+  animation-timing-function: ease-in-out;
 }
