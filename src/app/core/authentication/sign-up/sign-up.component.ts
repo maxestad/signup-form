@@ -7,7 +7,10 @@ import {
   ValidatorFn,
   Validators,
 } from '@angular/forms';
-import { Subscription } from 'rxjs';
+import { Router } from '@angular/router';
+import { Subscription, take } from 'rxjs';
+
+import { AuthenticationService } from '../authentication.service';
 
 @Component({
   selector: 'app-sign-up',
@@ -30,7 +33,10 @@ export class SignUpComponent implements OnInit, OnDestroy {
   private firstNameChangeSubscription: Subscription | undefined;
   private lastNameChangeSubscription: Subscription | undefined;
 
-  constructor() {}
+  constructor(
+    private authService: AuthenticationService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     // We subscribe to the statusChanges observable of the password form control to update the password error message when the password status changes.
@@ -146,6 +152,34 @@ export class SignUpComponent implements OnInit, OnDestroy {
 
   public onSubmit(e: SubmitEvent): void {
     e.preventDefault();
+
+    // We check if the form is valid and if the values are not null or undefined before submitting the form.
+    if (this.signUpForm.valid) {
+      const { firstName, lastName, email, password } = this.signUpForm.value;
+
+      if (firstName && lastName && email && password) {
+        this.authService
+          .signUp({ firstName, lastName, email, password })
+          .pipe(take(1))
+          .subscribe((response) => {
+            if ('error' in response) {
+              this.signUpForm.reset({
+                firstName: '',
+                lastName: '',
+                email: '',
+                password: '',
+              });
+              this.passwordErrorMessage = '';
+              alert('An error occurred: ' + response.error.message);
+            } else {
+              this.passwordErrorMessage = '';
+              this.signUpForm.reset();
+              this.authService.setIsSignedUp(true);
+              this.router.navigate(['/dashboard']);
+            }
+          });
+      }
+    }
   }
 
   // This method is used to remove the red border and error around the input field when the user starts typing for a better user experience.

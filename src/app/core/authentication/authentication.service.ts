@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, catchError, of } from 'rxjs';
 
 import type { UserType } from '@models/user';
 import type { Observable } from 'rxjs';
@@ -15,14 +15,28 @@ export class AuthenticationService {
   // New subscribers will immediately get a value upon subscription.
   private isUserSignedUp: BehaviorSubject<boolean> =
     new BehaviorSubject<boolean>(false);
+  private readonly apiUrl = 'https://demo-api.vercel.app/userswe';
 
-  signUp(user: UserType): void {
-    this.http.post('https://demo-api.vercel.app/users', {
-      user,
-    });
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  signUp(user: UserType): Observable<UserType | { error: any }> {
+    return this.http
+      .post<UserType>(this.apiUrl, {
+        user,
+      })
+      .pipe(
+        catchError((error) => {
+          console.error('An error occurred:', error);
+
+          return of({ error });
+        })
+      );
   }
 
   getIsSignedUp(): Observable<boolean> {
     return this.isUserSignedUp.asObservable();
+  }
+
+  setIsSignedUp(value: boolean): void {
+    this.isUserSignedUp.next(value);
   }
 }
