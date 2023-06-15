@@ -41,36 +41,18 @@ export class SignUpComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     // We subscribe to the statusChanges observable of the password form control to update the password error message when the password status changes.
     this.passwordStatusChangeSubscription =
-      this.password?.statusChanges.subscribe(() => {
+      this.signUpForm?.controls?.password?.statusChanges.subscribe(() => {
         this.passwordErrorMessage = this.getPasswordErrorMessage();
       });
     // We subscribe to the valueChanges observable of the first name and last name form controls to update the password validity when the first name or last name changes.
-    this.firstNameChangeSubscription = this.firstName?.valueChanges.subscribe(
-      () => {
-        this.password?.updateValueAndValidity();
-      }
-    );
-    this.lastNameChangeSubscription = this.lastName?.valueChanges.subscribe(
-      () => {
-        this.password?.updateValueAndValidity();
-      }
-    );
-  }
-
-  get firstName(): AbstractControl<string | null> | null {
-    return this.signUpForm?.controls.firstName;
-  }
-
-  get lastName(): AbstractControl<string | null> | null {
-    return this.signUpForm?.controls.lastName;
-  }
-
-  get email(): AbstractControl<string | null> | null {
-    return this.signUpForm?.controls.email;
-  }
-
-  get password(): AbstractControl<string | null> | null {
-    return this.signUpForm?.controls.password;
+    this.firstNameChangeSubscription =
+      this.signUpForm?.controls.firstName?.valueChanges.subscribe(() => {
+        this.signUpForm?.controls?.password?.updateValueAndValidity();
+      });
+    this.lastNameChangeSubscription =
+      this.signUpForm?.controls.lastName?.valueChanges.subscribe(() => {
+        this.signUpForm?.controls?.password?.updateValueAndValidity();
+      });
   }
 
   // There is a built-in validator for email address in Angular but it is not very strict, it allows email addresses like "abc@abc"
@@ -113,8 +95,10 @@ export class SignUpComponent implements OnInit, OnDestroy {
     return (control: AbstractControl): ValidationErrors | null => {
       // We convert a string to lowercase letters to make the comparison case insensitive
       const passwordValue = control.value?.toLowerCase();
-      const firstNameValue = this.firstName?.value?.toLowerCase();
-      const lastNameValue = this.lastName?.value?.toLowerCase();
+      const firstNameValue =
+        this.signUpForm?.controls.firstName?.value?.toLowerCase();
+      const lastNameValue =
+        this.signUpForm?.controls.lastName?.value?.toLowerCase();
 
       if (
         (firstNameValue && passwordValue.includes(firstNameValue)) ||
@@ -128,7 +112,7 @@ export class SignUpComponent implements OnInit, OnDestroy {
   }
 
   private getPasswordErrorMessage(): string {
-    const errors = this.password?.errors;
+    const errors = this.signUpForm?.controls?.password?.errors;
     if (!errors) {
       return '';
     }

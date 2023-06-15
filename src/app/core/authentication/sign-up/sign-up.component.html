@@ -22,7 +22,11 @@
             (inputChange)="onInputChange(signUpForm.controls.firstName)"
           ></app-input>
           <div
-            *ngIf="firstName?.invalid && firstName?.dirty && firstName?.touched"
+            *ngIf="
+              signUpForm.controls.firstName?.invalid &&
+              signUpForm.controls.firstName?.dirty &&
+              signUpForm.controls.firstName?.touched
+            "
             role="alert"
             class="absolute flex text-red-400 fade-in-error transition-opacity duration-500 ease-in-out text-xs mt-1 delay-100"
           >
@@ -31,7 +35,9 @@
               src="assets/icons/warning.svg"
               alt="warning icon indicating an error"
             />
-            <ng-container *ngIf="firstName?.errors?.['required']">
+            <ng-container
+              *ngIf="signUpForm.controls.firstName?.errors?.['required']"
+            >
               First name is required.
             </ng-container>
           </div>
@@ -48,7 +54,11 @@
             (inputChange)="onInputChange(signUpForm.controls.lastName)"
           ></app-input>
           <div
-            *ngIf="lastName?.invalid && lastName?.dirty && lastName?.touched"
+            *ngIf="
+              this.signUpForm?.controls?.lastName?.invalid &&
+              this.signUpForm?.controls?.lastName?.dirty &&
+              this.signUpForm?.controls?.lastName?.touched
+            "
             role="alert"
             class="absolute flex text-red-400 fade-in-error transition-opacity duration-500 ease-in-out text-xs mt-1 delay-100"
           >
@@ -57,7 +67,8 @@
               src="assets/icons/warning.svg"
               alt="warning icon indicating an error"
             />
-            <ng-container *ngIf="lastName?.errors?.['required']"
+            <ng-container
+              *ngIf="this.signUpForm?.controls?.lastName?.errors?.['required']"
               >Last name is required.</ng-container
             >
           </div>
@@ -77,7 +88,10 @@
           ></app-input>
           <div
             *ngIf="
-              email?.invalid && email?.dirty && email?.touched && email?.value
+              this.signUpForm?.controls?.email?.invalid &&
+              this.signUpForm?.controls?.email?.dirty &&
+              this.signUpForm?.controls?.email?.touched &&
+              this.signUpForm?.controls?.email?.value
             "
             role="alert"
             class="absolute flex text-red-400 fade-in-error transition-opacity duration-500 ease-in-out text-xs mt-1 delay-100"
@@ -87,7 +101,9 @@
               src="assets/icons/warning.svg"
               alt="warning icon indicating an error"
             />
-            <ng-container *ngIf="email?.errors?.['emailInvalid']">
+            <ng-container
+              *ngIf="this.signUpForm?.controls?.email?.errors?.['emailInvalid']"
+            >
               Please enter a valid email.
             </ng-container>
           </div>
@@ -106,7 +122,11 @@
             (inputChange)="onInputChange(signUpForm.controls.password)"
           ></app-input>
           <div
-            *ngIf="password?.invalid && password?.dirty && !password?.touched"
+            *ngIf="
+              this.signUpForm?.controls?.password?.invalid &&
+              this.signUpForm?.controls?.password?.dirty &&
+              !this.signUpForm?.controls?.password?.touched
+            "
             class="pr-10 absolute text-gray-600 fade-in-error transition-opacity duration-500 ease-in-out text-xs mt-1 delay-100"
           >
             Your password must be at least 8 characters long, have uppercase and
@@ -114,10 +134,10 @@
           </div>
           <div
             *ngIf="
-              password?.invalid &&
-              password?.dirty &&
-              password?.touched &&
-              password?.value
+              this.signUpForm?.controls?.password?.invalid &&
+              this.signUpForm?.controls?.password?.dirty &&
+              this.signUpForm?.controls?.password?.touched &&
+              this.signUpForm?.controls?.password?.value
             "
             role="alert"
             class="pr-10 absolute flex text-red-400 fade-in-error transition-opacity duration-500 ease-in-out text-xs mt-1 delay-100"
@@ -130,7 +150,7 @@
             {{ passwordErrorMessage }}
           </div>
           <div
-            *ngIf="password?.valid"
+            *ngIf="this.signUpForm?.controls?.password?.valid"
             class="absolute flex fade-in-error transition-opacity duration-500 ease-in-out text-xs mt-1 delay-100"
           >
             <img
