@@ -1,4 +1,4 @@
-<section class="flex h-screen flex-col justify-center px-6 py-12 lg:px-8">
+<main class="flex h-screen flex-col justify-center px-6 py-12 lg:px-8">
   <div
     class="bg-gray-50 -mt-10 rounded-lg shadow-md drop-shadow-md sm:mx-auto sm:w-full p-10 sm:max-w-md"
   >
@@ -7,161 +7,152 @@
     >
       Sign Up
     </h2>
-    <form
-      [formGroup]="signUpForm"
-      (ngSubmit)="onSubmit($event)"
-      class="space-y-6"
-    >
-      <div class="relative">
-        <label
-          for="firstName"
-          class="text-sm font-medium leading-6 text-gray-900"
-          >First name
-        </label>
-        <input
-          formControlName="firstName"
-          id="firstName"
-          name="firstName"
-          type="text"
-          autocomplete="given-name"
-          required
-          (input)="onInputChange(signUpForm.controls.firstName)"
-          [ngClass]="{
-            'focus:ring-red-400 ring-red-400 ring-2':
-              firstName?.invalid && firstName?.dirty && firstName?.touched,
-          }"
-          class="mt-2 w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-        />
-        <div
-          *ngIf="firstName?.invalid && firstName?.dirty && firstName?.touched"
-          class="absolute flex text-red-400 fade-in-error transition-opacity duration-500 ease-in-out text-xs mt-1 delay-100"
-        >
-          <img class="mr-1" src="assets/icons/warning.svg" alt="warning" />
-          <ng-container *ngIf="firstName?.errors?.['required']">
-            First name is required.
-          </ng-container>
-        </div>
-      </div>
+    <form [formGroup]="signUpForm" novalidate (ngSubmit)="onSubmit($event)">
+      <fieldset class="space-y-6">
+        <legend class="sr-only">User Details</legend>
 
-      <div class="relative">
-        <label
-          for="lastName"
-          class="text-sm font-medium leading-6 text-gray-900"
-          >Last name
-        </label>
-        <input
-          formControlName="lastName"
-          id="lastName"
-          name="lastName"
-          type="text"
-          autocomplete="family-name"
-          required
-          (input)="onInputChange(signUpForm.controls.lastName)"
-          [ngClass]="{
-            'focus:ring-red-400 ring-red-400 ring-2':
-              lastName?.invalid && lastName?.dirty && lastName?.touched,
-          }"
-          class="mt-2 w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-        />
-        <div
-          *ngIf="lastName?.invalid && lastName?.dirty && lastName?.touched"
-          class="absolute flex text-red-400 fade-in-error transition-opacity duration-500 ease-in-out text-xs mt-1 delay-100"
-        >
-          <img class="mr-1" src="assets/icons/warning.svg" alt="warning" />
-          <ng-container *ngIf="lastName?.errors?.['required']"
-            >Last name is required.</ng-container
+        <div class="relative">
+          <app-input
+            formControlName="firstName"
+            labelText="First name"
+            id="firstName"
+            autocompleteName="given-name"
+            placeholder="John"
+            [formControl]="signUpForm.controls.firstName"
+            (inputChange)="onInputChange(signUpForm.controls.firstName)"
+          ></app-input>
+          <div
+            *ngIf="firstName?.invalid && firstName?.dirty && firstName?.touched"
+            role="alert"
+            class="absolute flex text-red-400 fade-in-error transition-opacity duration-500 ease-in-out text-xs mt-1 delay-100"
           >
+            <img
+              class="mr-1"
+              src="assets/icons/warning.svg"
+              alt="warning icon indicating an error"
+            />
+            <ng-container *ngIf="firstName?.errors?.['required']">
+              First name is required.
+            </ng-container>
+          </div>
         </div>
-      </div>
 
-      <div class="relative">
-        <label for="email" class="text-sm font-medium leading-6 text-gray-900"
-          >Email
-        </label>
-        <input
-          formControlName="email"
-          id="email"
-          name="email"
-          type="email"
-          autocomplete="email"
-          required
-          (input)="onInputChange(signUpForm.controls.email)"
-          [ngClass]="{
-            'focus:ring-red-400 ring-red-400 ring-2':
-              email?.invalid && email?.dirty && email?.touched && email?.value,
-          }"
-          class="mt-2 w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-        />
-        <div
-          *ngIf="
-            email?.invalid && email?.dirty && email?.touched && email?.value
-          "
-          class="absolute flex text-red-400 fade-in-error transition-opacity duration-500 ease-in-out text-xs mt-1 delay-100"
-        >
-          <img class="mr-1" src="assets/icons/warning.svg" alt="warning" />
-          <ng-container *ngIf="email?.errors?.['emailInvalid']">
-            Please enter a valid email.
-          </ng-container>
+        <div class="relative">
+          <app-input
+            formControlName="lastName"
+            labelText="Last name"
+            id="lastName"
+            autocompleteName="family-name"
+            placeholder="Doe"
+            [formControl]="signUpForm.controls.lastName"
+            (inputChange)="onInputChange(signUpForm.controls.lastName)"
+          ></app-input>
+          <div
+            *ngIf="lastName?.invalid && lastName?.dirty && lastName?.touched"
+            role="alert"
+            class="absolute flex text-red-400 fade-in-error transition-opacity duration-500 ease-in-out text-xs mt-1 delay-100"
+          >
+            <img
+              class="mr-1"
+              src="assets/icons/warning.svg"
+              alt="warning icon indicating an error"
+            />
+            <ng-container *ngIf="lastName?.errors?.['required']"
+              >Last name is required.</ng-container
+            >
+          </div>
         </div>
-      </div>
 
-      <div>
-        <label
-          for="password"
-          class="block text-sm font-medium leading-6 text-gray-900"
-          >Password</label
-        >
-        <input
-          formControlName="password"
-          id="password"
-          name="password"
-          type="password"
-          autocomplete="current-password"
-          required
-          (input)="onInputChange(signUpForm.controls.password)"
-          [ngClass]="{
-            'focus:ring-red-400 ring-red-400 ring-2':
-              password?.invalid && password?.dirty && password?.touched && password?.value,
-          }"
-          class="mt-2 w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-        />
-        <div
-          *ngIf="password?.invalid && password?.dirty && !password?.touched"
-          class="pr-10 absolute text-gray-600 fade-in-error transition-opacity duration-500 ease-in-out text-xs mt-1 delay-100"
-        >
-          Your password must be at least 8 characters long, have uppercase and
-          lowercase letters and not contain your first or last name.
+        <div class="relative">
+          <app-input
+            formControlName="email"
+            labelText="Email"
+            id="email"
+            inputType="email"
+            autocompleteName="email"
+            placeholder="example@email.com"
+            [checkValueCondition]="true"
+            [formControl]="signUpForm.controls.email"
+            (inputChange)="onInputChange(signUpForm.controls.email)"
+          ></app-input>
+          <div
+            *ngIf="
+              email?.invalid && email?.dirty && email?.touched && email?.value
+            "
+            role="alert"
+            class="absolute flex text-red-400 fade-in-error transition-opacity duration-500 ease-in-out text-xs mt-1 delay-100"
+          >
+            <img
+              class="mr-1"
+              src="assets/icons/warning.svg"
+              alt="warning icon indicating an error"
+            />
+            <ng-container *ngIf="email?.errors?.['emailInvalid']">
+              Please enter a valid email.
+            </ng-container>
+          </div>
         </div>
-        <div
-          *ngIf="
-            password?.invalid &&
-            password?.dirty &&
-            password?.touched &&
-            password?.value
-          "
-          class="pr-10 absolute flex text-red-400 fade-in-error transition-opacity duration-500 ease-in-out text-xs mt-1 delay-100"
-        >
-          <img class="mr-1" src="assets/icons/warning.svg" alt="warning" />
-          {{ passwordErrorMessage }}
+
+        <div>
+          <app-input
+            formControlName="password"
+            labelText="Password"
+            id="password"
+            inputType="password"
+            autocomplete="current-password"
+            placeholder="**********"
+            [checkValueCondition]="true"
+            [formControl]="signUpForm.controls.password"
+            (inputChange)="onInputChange(signUpForm.controls.password)"
+          ></app-input>
+          <div
+            *ngIf="password?.invalid && password?.dirty && !password?.touched"
+            class="pr-10 absolute text-gray-600 fade-in-error transition-opacity duration-500 ease-in-out text-xs mt-1 delay-100"
+          >
+            Your password must be at least 8 characters long, have uppercase and
+            lowercase letters and not contain your first or last name.
+          </div>
+          <div
+            *ngIf="
+              password?.invalid &&
+              password?.dirty &&
+              password?.touched &&
+              password?.value
+            "
+            role="alert"
+            class="pr-10 absolute flex text-red-400 fade-in-error transition-opacity duration-500 ease-in-out text-xs mt-1 delay-100"
+          >
+            <img
+              class="mr-1"
+              src="assets/icons/warning.svg"
+              alt="warning icon indicating an error"
+            />
+            {{ passwordErrorMessage }}
+          </div>
+          <div
+            *ngIf="password?.valid"
+            class="absolute flex fade-in-error transition-opacity duration-500 ease-in-out text-xs mt-1 delay-100"
+          >
+            <img
+              class="mr-1"
+              src="assets/icons/checkmark.svg"
+              alt="green checkmark indicating success"
+            />
+            Good job! This is a great password.
+          </div>
         </div>
-        <div
-          *ngIf="password?.valid"
-          class="absolute flex fade-in-error transition-opacity duration-500 ease-in-out text-xs mt-1 delay-100"
-        >
-          <img class="mr-1" src="assets/icons/checkmark.svg" alt="checkmark" />
-          Good job! This is a great password.
-        </div>
-      </div>
+      </fieldset>
 
       <div>
         <button
           [disabled]="!signUpForm.valid"
           type="submit"
           class="mt-16 disabled:bg-indigo-400/70 disabled:text-gray-200 flex w-full justify-center rounded-md bg-indigo-600 px-5 py-2.5 text-sm font-semibold leading-6 text-gray-50 shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+          aria-label="Create account"
         >
           Create account
         </button>
       </div>
     </form>
   </div>
-</section>
+</main>

@@ -28,10 +28,10 @@ export class SignUpComponent implements OnInit, OnDestroy {
       this.nameInPasswordValidator(),
     ]),
   });
-  public passwordErrorMessage = '';
   private passwordStatusChangeSubscription: Subscription | undefined;
   private firstNameChangeSubscription: Subscription | undefined;
   private lastNameChangeSubscription: Subscription | undefined;
+  public passwordErrorMessage = '';
 
   constructor(
     private authService: AuthenticationService,
@@ -112,7 +112,7 @@ export class SignUpComponent implements OnInit, OnDestroy {
   private nameInPasswordValidator(): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null => {
       // We convert a string to lowercase letters to make the comparison case insensitive
-      const passwordValue = control.value.toLowerCase();
+      const passwordValue = control.value?.toLowerCase();
       const firstNameValue = this.firstName?.value?.toLowerCase();
       const lastNameValue = this.lastName?.value?.toLowerCase();
 

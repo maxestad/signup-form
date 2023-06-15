@@ -15,7 +15,7 @@ export class AuthenticationService {
   // New subscribers will immediately get a value upon subscription.
   private isUserSignedUp: BehaviorSubject<boolean> =
     new BehaviorSubject<boolean>(false);
-  private readonly apiUrl = 'https://demo-api.vercel.app/userswe';
+  private readonly apiUrl = 'https://demo-api.vercel.app/users';
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   signUp(user: UserType): Observable<UserType | { error: any }> {
