@@ -1,28 +1,31 @@
-// /* tslint:disable:no-unused-variable */
-// import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-// import { By } from '@angular/platform-browser';
-// import { DebugElement } from '@angular/core';
+/* tslint:disable:no-unused-variable */
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-// import { DashboardComponent } from './dashboard.component';
+import { DashboardComponent } from './dashboard.component';
 
-// describe('DashboardComponent', () => {
-//   let component: DashboardComponent;
-//   let fixture: ComponentFixture<DashboardComponent>;
+describe('DashboardComponent', () => {
+  let component: DashboardComponent;
+  let fixture: ComponentFixture<DashboardComponent>;
 
-//   beforeEach(async(() => {
-//     TestBed.configureTestingModule({
-//       declarations: [ DashboardComponent ]
-//     })
-//     .compileComponents();
-//   }));
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      declarations: [DashboardComponent],
+    }).compileComponents();
+  });
 
-//   beforeEach(() => {
-//     fixture = TestBed.createComponent(DashboardComponent);
-//     component = fixture.componentInstance;
-//     fixture.detectChanges();
-//   });
+  beforeEach(() => {
+    fixture = TestBed.createComponent(DashboardComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
 
-//   it('should create', () => {
-//     expect(component).toBeTruthy();
-//   });
-// });
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+
+  it('should show welcoming message', () => {
+    const message: HTMLHeadingElement =
+      fixture.nativeElement.querySelector('h1');
+    expect(message.textContent).toContain('Welcome aboard 👏');
+  });
+});
