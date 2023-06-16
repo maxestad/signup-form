@@ -6,8 +6,8 @@
       "@typescript-eslint/parser": [".ts"]
     },
     "import/resolver": {
-      "node": {
-        "extensions": [".js", ".ts", ".d.ts", ".mjs"]
+      "typescript": {
+        "alwaysTryTypes": true
       }
     }
   },

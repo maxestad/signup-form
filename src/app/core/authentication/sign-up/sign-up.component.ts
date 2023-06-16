@@ -1,16 +1,17 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import {
-  AbstractControl,
-  FormControl,
-  FormGroup,
-  ValidationErrors,
-  ValidatorFn,
-  Validators,
-} from '@angular/forms';
+import { Component } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Subscription, take } from 'rxjs';
+import { take } from 'rxjs';
 
 import { AuthenticationService } from '../authentication.service';
+
+import type { OnDestroy, OnInit } from '@angular/core';
+import type {
+  AbstractControl,
+  ValidationErrors,
+  ValidatorFn,
+} from '@angular/forms';
+import type { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-sign-up',
@@ -139,14 +140,14 @@ export class SignUpComponent implements OnInit, OnDestroy {
 
     // We check if the form is valid and if the values are not null or undefined before submitting the form.
     if (this.signUpForm.valid) {
-      const { firstName, lastName, email, password } = this.signUpForm.value;
+      const { firstName, lastName, email } = this.signUpForm.value;
 
-      if (firstName && lastName && email && password) {
+      if (firstName && lastName && email) {
         this.authService
-          .signUp({ firstName, lastName, email, password })
+          .signUp({ firstName, lastName, email })
           .pipe(take(1))
           .subscribe((response) => {
-            if ('error' in response) {
+            if (response instanceof Error) {
               this.signUpForm.reset({
                 firstName: '',
                 lastName: '',
@@ -154,7 +155,7 @@ export class SignUpComponent implements OnInit, OnDestroy {
                 password: '',
               });
               this.passwordErrorMessage = '';
-              alert('An error occurred: ' + response.error.message);
+              alert(response.message);
             } else {
               this.passwordErrorMessage = '';
               this.signUpForm.reset();

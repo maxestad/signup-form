@@ -17,17 +17,19 @@ export class AuthenticationService {
     new BehaviorSubject<boolean>(false);
   private readonly apiUrl = 'https://demo-api.vercel.app/users';
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  signUp(user: UserType): Observable<UserType | { error: any }> {
+  signUp(user: UserType): Observable<UserType | Error> {
     return this.http
       .post<UserType>(this.apiUrl, {
         user,
       })
       .pipe(
         catchError((error) => {
-          console.error('An error occurred:', error);
+          const newError = new Error(
+            'A nasty error occurred: ' + error.message
+          );
+          console.error(newError);
 
-          return of({ error });
+          return of(newError);
         })
       );
   }

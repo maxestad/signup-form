@@ -1,6 +1,4 @@
-// import { DebugElement } from '@angular/core';
 // import { TestBed } from '@angular/core/testing';
-// import { By } from '@angular/platform-browser';
 
 // import { SignUpComponent } from './sign-up.component';
 
@@ -10,11 +8,11 @@
 //   let component: SignUpComponent;
 //   let fixture: ComponentFixture<SignUpComponent>;
 
-//   beforeEach(async(() => {
+//   beforeEach(() => {
 //     TestBed.configureTestingModule({
 //       declarations: [SignUpComponent],
 //     }).compileComponents();
-//   }));
+//   });
 
 //   beforeEach(() => {
 //     fixture = TestBed.createComponent(SignUpComponent);
