@@ -15,9 +15,9 @@
           <app-input
             formControlName="firstName"
             labelText="First name"
-            id="firstName"
-            autocompleteName="given-name"
-            placeholder="John"
+            inputId="firstName"
+            inputAutocomplete="given-name"
+            inputPlaceholder="John"
             [formControl]="signUpForm.controls.firstName"
             (inputChange)="onInputChange(signUpForm.controls.firstName)"
           ></app-input>
@@ -27,6 +27,7 @@
               signUpForm.controls.firstName?.dirty &&
               signUpForm.controls.firstName?.touched
             "
+            id="firstNameError"
             role="alert"
             class="absolute flex text-red-400 fade-in-error transition-opacity duration-500 ease-in-out text-xs mt-1 delay-100"
           >
@@ -47,9 +48,9 @@
           <app-input
             formControlName="lastName"
             labelText="Last name"
-            id="lastName"
-            autocompleteName="family-name"
-            placeholder="Doe"
+            inputId="lastName"
+            inputAutocomplete="family-name"
+            inputPlaceholder="Doe"
             [formControl]="signUpForm.controls.lastName"
             (inputChange)="onInputChange(signUpForm.controls.lastName)"
           ></app-input>
@@ -59,6 +60,7 @@
               this.signUpForm?.controls?.lastName?.dirty &&
               this.signUpForm?.controls?.lastName?.touched
             "
+            id="lastNameError"
             role="alert"
             class="absolute flex text-red-400 fade-in-error transition-opacity duration-500 ease-in-out text-xs mt-1 delay-100"
           >
@@ -78,10 +80,10 @@
           <app-input
             formControlName="email"
             labelText="Email"
-            id="email"
+            inputId="email"
             inputType="email"
-            autocompleteName="email"
-            placeholder="example@email.com"
+            inputAutocomplete="email"
+            inputPlaceholder="example@email.com"
             [checkValueCondition]="true"
             [formControl]="signUpForm.controls.email"
             (inputChange)="onInputChange(signUpForm.controls.email)"
@@ -93,6 +95,7 @@
               this.signUpForm?.controls?.email?.touched &&
               this.signUpForm?.controls?.email?.value
             "
+            id="emailError"
             role="alert"
             class="absolute flex text-red-400 fade-in-error transition-opacity duration-500 ease-in-out text-xs mt-1 delay-100"
           >
@@ -113,10 +116,10 @@
           <app-input
             formControlName="password"
             labelText="Password"
-            id="password"
+            inputId="password"
             inputType="password"
-            autocomplete="current-password"
-            placeholder="**********"
+            inputAutocomplete="current-password"
+            inputPlaceholder="**********"
             [checkValueCondition]="true"
             [formControl]="signUpForm.controls.password"
             (inputChange)="onInputChange(signUpForm.controls.password)"
@@ -127,6 +130,7 @@
               this.signUpForm?.controls?.password?.dirty &&
               !this.signUpForm?.controls?.password?.touched
             "
+            id="passwordTip"
             class="pr-10 absolute text-gray-600 fade-in-error transition-opacity duration-500 ease-in-out text-xs mt-1 delay-100"
           >
             Your password must be at least 8 characters long, have uppercase and
@@ -139,6 +143,7 @@
               this.signUpForm?.controls?.password?.touched &&
               this.signUpForm?.controls?.password?.value
             "
+            id="passwordError"
             role="alert"
             class="pr-10 absolute flex text-red-400 fade-in-error transition-opacity duration-500 ease-in-out text-xs mt-1 delay-100"
           >
@@ -151,6 +156,7 @@
           </div>
           <div
             *ngIf="this.signUpForm?.controls?.password?.valid"
+            id="passwordSuccess"
             class="absolute flex fade-in-error transition-opacity duration-500 ease-in-out text-xs mt-1 delay-100"
           >
             <img

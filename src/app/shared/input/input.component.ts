@@ -25,10 +25,10 @@ import {
 })
 export class InputComponent implements ControlValueAccessor {
   @Input() labelText!: string;
-  @Input() id!: string;
+  @Input() inputId!: string;
   @Input() inputType = 'text';
-  @Input() autocompleteName!: string;
-  @Input() placeholder!: string;
+  @Input() inputAutocomplete!: string;
+  @Input() inputPlaceholder!: string;
   @Input() formControl!: FormControl;
   @Input() checkValueCondition = false;
 

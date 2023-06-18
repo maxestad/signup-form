@@ -1,11 +1,11 @@
-<label [for]="id" class="text-sm font-medium leading-6 text-gray-900"
+<label [for]="inputId" class="text-sm font-medium leading-6 text-gray-900"
   >{{ labelText }}
 </label>
 <input
-  [id]="id"
-  [name]="id"
-  [autocomplete]="autocompleteName"
-  [placeholder]="placeholder"
+  [id]="inputId"
+  [name]="inputId"
+  [autocomplete]="inputAutocomplete"
+  [placeholder]="inputPlaceholder"
   [type]="inputType"
   required
   [formControl]="formControl"
