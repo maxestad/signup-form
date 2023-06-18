@@ -24,12 +24,12 @@ import {
   ],
 })
 export class InputComponent implements ControlValueAccessor {
-  @Input() labelText!: string;
-  @Input() inputId!: string;
+  @Input() labelText = 'label';
+  @Input() inputId = 'inputId';
   @Input() inputType = 'text';
-  @Input() inputAutocomplete!: string;
-  @Input() inputPlaceholder!: string;
-  @Input() formControl!: FormControl;
+  @Input() inputAutocomplete = 'on';
+  @Input() inputPlaceholder = 'placeholder';
+  @Input() formControl = new FormControl();
   @Input() checkValueCondition = false;
 
   @Output() public readonly inputChange = new EventEmitter<FormControl>();
@@ -37,8 +37,8 @@ export class InputComponent implements ControlValueAccessor {
   public value = '';
   public isDisabled?: boolean;
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars, @typescript-eslint/no-explicit-any, @typescript-eslint/explicit-module-boundary-types
-  public onChange = (value?: any): void => {};
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  public onChange = (value: string): void => {};
   public onTouched = (): void => {};
 
   public writeValue(value: string): void {

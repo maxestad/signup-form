@@ -11,7 +11,7 @@ import type { Observable } from 'rxjs';
 export class AuthenticationService {
   constructor(private readonly http: HttpClient) {}
   // The boolean value would suffice for the scope of this app, but BehaviorSubject is a more robust solution for a real-world app.
-  // It is useful when you need to reactively notify other parts of your application (e.g. services, components) about the signUp status change.
+  // It is useful when you need to reactively notify other parts of your application (e.g. services, components) about the isUserSignedUp status change.
   // New subscribers will immediately get a value upon subscription.
   private isUserSignedUp: BehaviorSubject<boolean> =
     new BehaviorSubject<boolean>(false);
@@ -35,6 +35,7 @@ export class AuthenticationService {
   }
 
   getIsSignedUp(): Observable<boolean> {
+    // asObservable() is used to prevent consumers of this method from calling next() on the BehaviorSubject.
     return this.isUserSignedUp.asObservable();
   }
 

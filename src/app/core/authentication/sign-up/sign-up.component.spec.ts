@@ -208,7 +208,7 @@ describe('SignUpComponent', () => {
       email: 'email@example.com',
       password: 'Password1234',
     };
-    const expectedSignUpData = {
+    const requestData = {
       firstName: formData.firstName,
       lastName: formData.lastName,
       email: formData.email,
@@ -220,7 +220,7 @@ describe('SignUpComponent', () => {
     formEl.dispatchEvent(new Event('submit'));
     fixture.detectChanges();
 
-    expect(authServiceMock.signUp).toHaveBeenCalledWith(expectedSignUpData);
+    expect(authServiceMock.signUp).toHaveBeenCalledWith(requestData);
     expect(routerMock.navigate).toHaveBeenCalledWith(['/dashboard']);
   });
 });

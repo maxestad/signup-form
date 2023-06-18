@@ -79,7 +79,7 @@ describe('AuthenticationService', () => {
     req.flush(errorMessage, { status: 404, statusText: 'Not Found' });
   });
 
-  it('#getIsSignedUp should return Observable<boolean> with initial value of false', (done) => {
+  it('#getIsSignedUp should return Observable<boolean> with initial value of false', (done: DoneFn) => {
     service.getIsSignedUp().subscribe((value) => {
       expect(value).toBe(false);
       done();
