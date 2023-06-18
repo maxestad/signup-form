@@ -29,6 +29,7 @@
         "plugin:@angular-eslint/recommended",
         "plugin:@angular-eslint/template/process-inline-templates",
         "plugin:import/errors",
+        "plugin:cypress/recommended",
         "prettier"
       ],
       "rules": {
